@@ -10,8 +10,16 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true,
+
+    //? trnasforma los datos pasados (params o queries) en el tipo de los DTOs 
+    transform: true,
+    transformOptions: {
+      enableImplicitConversion: true
+    }
   }))
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
+
+  console.log('Running in  Port '+ process.env.PORT );
 }
 bootstrap();
